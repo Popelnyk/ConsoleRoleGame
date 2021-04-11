@@ -1,0 +1,15 @@
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/bin/Debug/net5.0/RoleGame.deps.json
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/bin/Debug/net5.0/RoleGame.runtimeconfig.json
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/bin/Debug/net5.0/RoleGame.runtimeconfig.dev.json
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/bin/Debug/net5.0/RoleGame.dll
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/bin/Debug/net5.0/ref/RoleGame.dll
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/bin/Debug/net5.0/RoleGame.pdb
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/obj/Debug/net5.0/RoleGame.csprojAssemblyReference.cache
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/obj/Debug/net5.0/RoleGame.GeneratedMSBuildEditorConfig.editorconfig
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/obj/Debug/net5.0/RoleGame.AssemblyInfoInputs.cache
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/obj/Debug/net5.0/RoleGame.AssemblyInfo.cs
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/obj/Debug/net5.0/RoleGame.csproj.CoreCompileInputs.cache
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/obj/Debug/net5.0/RoleGame.dll
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/obj/Debug/net5.0/ref/RoleGame.dll
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/obj/Debug/net5.0/RoleGame.pdb
+/Users/macbookpro/RiderProjects/RoleGame/RoleGame/obj/Debug/net5.0/RoleGame.genruntimeconfig.cache
