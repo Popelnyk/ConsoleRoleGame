@@ -30,7 +30,7 @@ namespace RoleGame.Classes
     
     public class Player
     {
-        Player(string name, PlayerParams.Race race, PlayerParams.Sex sex, int age)
+        public Player(string name, PlayerParams.Race race, PlayerParams.Sex sex, int age)
         {
             _id = _lastId++;
             _name = name;
