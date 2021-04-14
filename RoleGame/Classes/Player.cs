@@ -1,3 +1,5 @@
+using System;
+
 namespace RoleGame.Classes
 {
     public readonly struct PlayerParams
@@ -28,7 +30,7 @@ namespace RoleGame.Classes
         }
     }
     
-    public class Player
+    public class Player : IComparable<Player>
     {
         public Player(string name, PlayerParams.Race race, PlayerParams.Sex sex, int age)
         {
@@ -49,9 +51,37 @@ namespace RoleGame.Classes
             _state = PlayerParams.State.Normal;
         }
 
-        public void SetMaxHealth(int health)
+        public void HealthCheck() {
+            if (Health == 0) {
+                State = PlayerParams.State.Dead;
+            } else if ((double)Health / MaxHealth < 0.1) {
+                State = PlayerParams.State.Attenuated;
+            } else {
+                State = PlayerParams.State.Normal;
+            }
+        }
+
+        public int CompareTo(Player p) {
+            return Experience.CompareTo(p.Experience);
+        }
+
+        public override string ToString() {
+            HealthCheck();
+            return $"Player name: {Name}\n" +
+                   $"State: {State}\n" +
+                   $"Can speak: {CanSpeak}\n" +
+                   $"Can move: {CanMove}\n" +
+                   $"Race: {Race}\n" +
+                   $"Sex: {Sex}\n" +
+                   $"Age: {Age}\n" +
+                   $"Health: {Health}\n" +
+                   $"Max health: {MaxHealth}\n" +
+                   $"Experience: {Experience}\n";
+        }
+
+        public void SetMaxHealth(int maxHealth)
         {
-            _maxHealth = health;
+            _maxHealth = maxHealth;
         }
         
         //TODO: move health to constants
@@ -86,6 +116,8 @@ namespace RoleGame.Classes
             get => _age;
             set => _age = value;
         }
+
+        public int MaxHealth => _maxHealth;
 
         public int Health
         {
