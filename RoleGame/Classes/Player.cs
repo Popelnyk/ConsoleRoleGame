@@ -79,30 +79,25 @@ namespace RoleGame.Classes
                    $"Experience: {Experience}\n";
         }
 
-        public void SetMaxHealth(int maxHealth)
-        {
-            _maxHealth = maxHealth;
-        }
-        
         //TODO: move health to constants
         void setMaxHealthDependingOnRace(PlayerParams.Race race)
         {
             switch (race)
             {
                 case PlayerParams.Race.Elf:
-                    _maxHealth = 50;
+                    MaxHealth = 50;
                     break;
                 case PlayerParams.Race.Gnome:
-                    _maxHealth = 80;
+                    MaxHealth = 80;
                     break;
                 case PlayerParams.Race.Goblin:
-                    _maxHealth = 90;
+                    MaxHealth = 90;
                     break;
                 case PlayerParams.Race.Human:
-                    _maxHealth = 100;
+                    MaxHealth = 100;
                     break;
                 case PlayerParams.Race.Orc:
-                    _maxHealth = 150;
+                    MaxHealth = 150;
                     break;
             }
         }
@@ -117,7 +112,10 @@ namespace RoleGame.Classes
             set => _age = value;
         }
 
-        public int MaxHealth => _maxHealth;
+        public int MaxHealth {
+            get => _maxHealth;
+            set => _maxHealth = value;
+        }
 
         public int Health
         {
