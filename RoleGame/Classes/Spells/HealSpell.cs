@@ -6,21 +6,16 @@ namespace RoleGame.Classes.Spells {
       base(minManaValueForSpell, verbalComponent, motorComponent) { }
 
     public override void UseSpell(PlayerWithMagic playerSender, Player player, int power = 0) {
-
       if (!playerSender.ManaChecker(power)) {
         return;
       }
 
-      while (power > MinManaValueForSpell) {
+      if (power >= MinManaValueForSpell) {
         if (player.State == PlayerParams.State.Sick) {
-          player.State = PlayerParams.State.Attenuated;
-        } else if (player.State == PlayerParams.State.Attenuated) {
-          player.State = PlayerParams.State.Normal;
-        } else {
-          break;
+          player.HealthCheck();
         }
+
         playerSender.ManaValue -= MinManaValueForSpell;
-        power -= MinManaValueForSpell;
       }
     }
   }

@@ -14,12 +14,12 @@ namespace RoleGame {
       // Console.WriteLine(playerWithMagic.ToString());
       // Console.WriteLine(player.ToString());
       //
-      // player.Health = 1;
+      // player.Health = 160;
       // player.State = PlayerParams.State.Sick;
       //
       // Console.WriteLine(player.ToString());
       //
-      // playerWithMagic.CastSpell(spell.UseSpell, player, 80);
+      // playerWithMagic.CastSpell(spell.UseSpell, player, 150);
       //
       // Console.WriteLine(playerWithMagic.ToString());
       // Console.WriteLine(player.ToString());
