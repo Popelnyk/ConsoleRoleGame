@@ -80,7 +80,7 @@ namespace RoleGame.Classes
         }
 
         //TODO: move health to constants
-        void setMaxHealthDependingOnRace(PlayerParams.Race race)
+        private void setMaxHealthDependingOnRace(PlayerParams.Race race)
         {
             switch (race)
             {
@@ -102,6 +102,31 @@ namespace RoleGame.Classes
             }
         }
 
+        private void ChangeHealth(int health)
+        {
+            if (0 <= health && health <= _maxHealth)
+            {
+                _health = health;
+                HealthCheck();
+            }
+        }
+
+        private void ChangeExperience(int experience)
+        {
+            if (experience >= 0)
+            {
+                _experience = _health;
+            }
+        }
+        
+        public void IncreaseMaxHealth(int maxHealth)
+        {
+            if (maxHealth > 0)
+            {
+                _maxHealth = maxHealth;
+            }
+        }
+
         public string Name => _name;
 
         public int Id => _id;
@@ -114,19 +139,19 @@ namespace RoleGame.Classes
 
         public int MaxHealth {
             get => _maxHealth;
-            set => _maxHealth = value;
+            set => IncreaseMaxHealth(value);
         }
 
         public int Health
         {
             get => _health;
-            set => _health = value;
+            set => ChangeHealth(value);
         }
 
         public int Experience
         {
             get => _experience;
-            set => _experience = value;
+            set => ChangeExperience(value);
         }
 
         public bool CanSpeak

@@ -12,6 +12,16 @@ namespace RoleGame.Classes {
       return ManaValue >= power;
     }
     
+    
+    // TODO: CastSpell(spell, player = this, power = 0)
+    // {
+    //     spell.UseSpell(this, 100)
+    // }
+    //
+    // Player1.CastSpell(AddHealthSpell, 10);
+    // Player1.CastSpell(AddHealthSpell, player2, 20);
+    
+    //TODO: remove 
     public void UseAddHealthSpell(Player player = null, int power = 0) {
       if (power < 0) {
         power = 0;
