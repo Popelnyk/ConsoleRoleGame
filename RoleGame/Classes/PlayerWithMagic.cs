@@ -26,15 +26,6 @@ namespace RoleGame.Classes {
       receivedSpell(this, player, power);
     }
 
-
-    // TODO: CastSpell(spell, player = this, power = 0)
-    // {
-    //     spell.UseSpell(this, 100)
-    // }
-    //
-    // Player1.CastSpell(AddHealthSpell, 10);
-    // Player1.CastSpell(AddHealthSpell, player2, 20);
-
     void SetMaxManaDependingOnRace(PlayerParams.Race race) {
       switch (race) {
         case PlayerParams.Race.Elf:
@@ -56,7 +47,6 @@ namespace RoleGame.Classes {
     }
 
     public override string ToString() {
-      HealthCheck();
       return $"Player name: {Name}\n" +
              $"State: {State}\n" +
              $"Can speak: {CanSpeak}\n" +

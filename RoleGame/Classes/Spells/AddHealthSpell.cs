@@ -7,6 +7,7 @@ namespace RoleGame.Classes.Spells {
       base(minManaValueForSpell, verbalComponent, motorComponent) { }
 
     public override void UseSpell(PlayerWithMagic playerSender, Player player, int power = 0) {
+      
       int healthWillBeRestored;
       if (playerSender.ManaChecker(power)) {
         healthWillBeRestored = power / 2;

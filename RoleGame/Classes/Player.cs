@@ -66,7 +66,6 @@ namespace RoleGame.Classes
         }
 
         public override string ToString() {
-            HealthCheck();
             return $"Player name: {Name}\n" +
                    $"State: {State}\n" +
                    $"Can speak: {CanSpeak}\n" +
