@@ -1,8 +1,10 @@
+using System;
+using System.Threading;
 using RoleGame.AbstractClasses;
 
 namespace RoleGame.Classes.Spells {
   public class ArmorSpell : AbstractSpell {
-    public ArmorSpell(int minManaValueForSpell = 85, bool verbalComponent = true, bool motorComponent = false) :
+    public ArmorSpell(int minManaValueForSpell = 50, bool verbalComponent = false, bool motorComponent = true) :
       base(minManaValueForSpell, verbalComponent, motorComponent) { }
 
     public override void UseSpell(PlayerWithMagic playerSender, Player player, int power = 0) {
@@ -16,8 +18,15 @@ namespace RoleGame.Classes.Spells {
         return;
       }
 
+      DateTime tempEndArmor = DateTime.Now;
+      
       if (power >= MinManaValueForSpell) {
-        //TODO make armor spell
+
+        int interval = power / MinManaValueForSpell;
+        tempEndArmor = DateTime.Now.AddSeconds(interval);
+        playerSender.ManaValue -= MinManaValueForSpell * interval;
+        player.EndArmorTime = tempEndArmor;
+        player.IsArmored = true;
       }
     }
   }

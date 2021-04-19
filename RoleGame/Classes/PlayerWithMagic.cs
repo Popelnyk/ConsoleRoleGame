@@ -64,7 +64,6 @@ namespace RoleGame.Classes {
     private void ChangeMana(int mana) {
       if (0 <= mana && mana <= MaxMana) {
         _mana = mana;
-        HealthCheck();
       }
     }
 

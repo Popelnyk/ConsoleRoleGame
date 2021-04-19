@@ -19,7 +19,7 @@ namespace RoleGame.Classes.Spells {
       if (power >= MinManaValueForSpell) {
         if (player.State == PlayerParams.State.Paralyzed) {
           player.Health = 1;
-          player.HealthCheck();
+          player.StateCheck();
         }
 
         playerSender.ManaValue -= MinManaValueForSpell;

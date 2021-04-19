@@ -48,10 +48,11 @@ namespace RoleGame.Classes
             _canSpeak = true;
             _canMove = true;
             _isDead = false;
+            _isArmored = false;
             _state = PlayerParams.State.Normal;
         }
 
-        public void HealthCheck() {
+        public void StateCheck() {
             if (Health == 0) {
                 State = PlayerParams.State.Dead;
             } else if ((double)Health / MaxHealth < 0.1) {
@@ -103,10 +104,17 @@ namespace RoleGame.Classes
 
         private void ChangeHealth(int health)
         {
-            if (0 <= health && health <= _maxHealth)
+            if (EndArmorTime < DateTime.Now) {
+                IsArmored = false;
+            }
+
+            if (0 <= health && health <= _maxHealth && !IsArmored)
             {
                 _health = health;
-                HealthCheck();
+            }
+
+            if (State == PlayerParams.State.Normal || State == PlayerParams.State.Attenuated) {
+                StateCheck();
             }
         }
 
@@ -114,7 +122,7 @@ namespace RoleGame.Classes
         {
             if (experience >= 0)
             {
-                _experience = _health;
+                _experience = experience;
             }
         }
         
@@ -177,6 +185,16 @@ namespace RoleGame.Classes
             set => _state = value;
         }
 
+        public DateTime EndArmorTime {
+            get => _endArmorTime;
+            set => _endArmorTime = value;
+        }
+        
+        public bool IsArmored {
+            get => _isArmored;
+            set => _isArmored = value;
+        }
+
         public PlayerParams.Race Race => _race;
 
         public PlayerParams.Sex Sex => _sex;
@@ -194,5 +212,8 @@ namespace RoleGame.Classes
         private bool _canSpeak;
         private bool _canMove;
         private bool _isDead;
+
+        private DateTime _endArmorTime;
+        private bool _isArmored;
     }
 }

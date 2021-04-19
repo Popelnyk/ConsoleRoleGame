@@ -27,6 +27,7 @@ namespace RoleGame.Classes.Spells {
         player.Health = player.MaxHealth;
         playerSender.ManaValue -= healthPlayerNeed * 2;
       }
+      player.StateCheck();
     }
   }
 }

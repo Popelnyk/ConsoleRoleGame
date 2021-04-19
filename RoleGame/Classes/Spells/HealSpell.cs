@@ -18,7 +18,7 @@ namespace RoleGame.Classes.Spells {
 
       if (power >= MinManaValueForSpell) {
         if (player.State == PlayerParams.State.Sick) {
-          player.HealthCheck();
+          player.StateCheck();
         }
 
         playerSender.ManaValue -= MinManaValueForSpell;
