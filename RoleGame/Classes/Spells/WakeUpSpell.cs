@@ -11,7 +11,7 @@ namespace RoleGame.Classes.Spells {
         return;
       }
 
-      if (!playerSender.CanSpeak) {
+      if (!((playerSender.CanSpeak && VerbalComponent) || (playerSender.CanMove && MotorComponent))) {
         //message
         return;
       }
