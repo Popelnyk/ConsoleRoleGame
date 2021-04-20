@@ -13,7 +13,11 @@ namespace RoleGame.AbstractClasses {
 
     public int MinManaValueForSpell {
       get => _minManaValueForSpell;
-      set => _minManaValueForSpell = value;
+      set {
+        if (value >= 0) {
+          _minManaValueForSpell = value;
+        }
+      }
     }
 
     public bool VerbalComponent {

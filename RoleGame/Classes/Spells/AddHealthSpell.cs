@@ -7,7 +7,7 @@ namespace RoleGame.Classes.Spells {
       base(minManaValueForSpell, verbalComponent, motorComponent) { }
 
     public override void UseSpell(PlayerWithMagic playerSender, Player player, int power = 0) {
-      if (!playerSender.CanSpeak) {
+      if (!((playerSender.CanSpeak && VerbalComponent) || (playerSender.CanMove && MotorComponent))) {
         //message
         return;
       }
@@ -27,6 +27,7 @@ namespace RoleGame.Classes.Spells {
         player.Health = player.MaxHealth;
         playerSender.ManaValue -= healthPlayerNeed * 2;
       }
+
       player.StateCheck();
     }
   }

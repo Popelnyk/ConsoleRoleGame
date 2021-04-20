@@ -13,17 +13,16 @@ namespace RoleGame.Classes.Spells {
         return;
       }
 
-      if (!playerSender.CanSpeak) {
+      if (!((playerSender.CanSpeak && VerbalComponent) || (playerSender.CanMove && MotorComponent))) {
         //message
         return;
       }
 
-      DateTime tempEndArmor = DateTime.Now;
-      
-      if (power >= MinManaValueForSpell) {
+      DateTime tempEndArmor;
 
+      if (power >= MinManaValueForSpell) {
         int interval = power / MinManaValueForSpell;
-        tempEndArmor = DateTime.Now.AddSeconds(interval);
+        tempEndArmor = DateTime.Now.AddMinutes(interval);
         playerSender.ManaValue -= MinManaValueForSpell * interval;
         player.EndArmorTime = tempEndArmor;
         player.IsArmored = true;
