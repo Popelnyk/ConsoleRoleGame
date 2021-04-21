@@ -2,8 +2,8 @@ using RoleGame.Classes.Spells;
 
 namespace RoleGame.Classes {
   public class PlayerWithMagic : Player {
-
-    public PlayerWithMagic(string name, PlayerParams.Race race, PlayerParams.Sex sex, int age) : base(name, race, sex, age){
+    public PlayerWithMagic(string name, PlayerParams.Race race, PlayerParams.Sex sex, int age) : base(name, race, sex,
+      age) {
       SetMaxManaDependingOnRace(race);
       ManaValue = _maxMana;
     }
@@ -11,24 +11,19 @@ namespace RoleGame.Classes {
     public bool ManaChecker(int power) {
       return ManaValue >= power;
     }
-    
-    
-    // TODO: CastSpell(spell, player = this, power = 0)
-    // {
-    //     spell.UseSpell(this, 100)
-    // }
-    //
-    // Player1.CastSpell(AddHealthSpell, 10);
-    // Player1.CastSpell(AddHealthSpell, player2, 20);
-    
-    //TODO: remove 
-    public void UseAddHealthSpell(Player player = null, int power = 0) {
+
+    public delegate void ReceivedSpell(PlayerWithMagic playerSender, Player player, int power);
+
+    public void CastSpell(ReceivedSpell receivedSpell, Player player = null, int power = 0) {
       if (power < 0) {
         power = 0;
       }
 
-      AddHealthSpell addHealthSpell = new AddHealthSpell(this);
-      addHealthSpell.UseSpell(player, power);
+      if (player == null) {
+        player = this;
+      }
+
+      receivedSpell(this, player, power);
     }
 
     void SetMaxManaDependingOnRace(PlayerParams.Race race) {
@@ -50,9 +45,8 @@ namespace RoleGame.Classes {
           break;
       }
     }
-    
+
     public override string ToString() {
-      HealthCheck();
       return $"Player name: {Name}\n" +
              $"State: {State}\n" +
              $"Can speak: {CanSpeak}\n" +
@@ -62,23 +56,34 @@ namespace RoleGame.Classes {
              $"Age: {Age}\n" +
              $"Health: {Health}\n" +
              $"Max health: {MaxHealth}\n" +
-             $"Experience: {Experience}\n" + 
-             $"Mana: {ManaValue}\n" + 
+             $"Experience: {Experience}\n" +
+             $"Mana: {ManaValue}\n" +
              $"Max mana: {_maxMana}\n";
+    }
+
+    private void ChangeMana(int mana) {
+      if (0 <= mana && mana <= MaxMana) {
+        _mana = mana;
+      }
+    }
+
+    public void IncreaseMaxMana(int maxMana) {
+      if (maxMana > 0) {
+        _maxMana = maxMana;
+      }
     }
 
     public int MaxMana {
       get => _maxMana;
-      set => _maxMana = value;
+      set => IncreaseMaxMana(value);
     }
-    
+
     public int ManaValue {
       get => _mana;
-      set => _mana = value;
+      set => ChangeMana(value);
     }
 
     private int _mana;
     private int _maxMana;
-    
   }
 }
