@@ -1,40 +1,31 @@
 using RoleGame.Classes;
 using RoleGame.Interfaces;
 
-namespace RoleGame.AbstractClasses
-{
-  public abstract class AbstractSpell : IMagic
-  {
-    
-    public AbstractSpell(int minManaValueForSpell, bool verbalComponent, bool motorComponent)
-    {
+namespace RoleGame.AbstractClasses {
+  public abstract class AbstractSpell : IMagic {
+    public AbstractSpell(int minManaValueForSpell, bool verbalComponent, bool motorComponent) {
       MinManaValueForSpell = minManaValueForSpell;
       VerbalComponent = verbalComponent;
       MotorComponent = motorComponent;
     }
 
-    public abstract void UseSpell(PlayerWithMagic playerSender, Player player, int power = 0);
+    public abstract void UseMagic(PlayerWithMagic playerSender, Player player, int power = 0);
 
-    public int MinManaValueForSpell
-    {
+    public int MinManaValueForSpell {
       get => _minManaValueForSpell;
-      set
-      {
-        if (value >= 0)
-        {
+      set {
+        if (value >= 0) {
           _minManaValueForSpell = value;
         }
       }
     }
 
-    public bool VerbalComponent
-    {
+    public bool VerbalComponent {
       get => _verbalComponent;
       set => _verbalComponent = value;
     }
 
-    public bool MotorComponent
-    {
+    public bool MotorComponent {
       get => _motorComponent;
       set => _motorComponent = value;
     }

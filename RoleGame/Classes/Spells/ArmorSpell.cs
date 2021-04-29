@@ -11,7 +11,7 @@ namespace RoleGame.Classes.Spells
     {
     }
 
-    public override void UseSpell(PlayerWithMagic playerSender, Player player, int power = 0)
+    public override void UseMagic(PlayerWithMagic playerSender, Player player, int power = 0)
     {
       if (!playerSender.ManaChecker(power))
       {

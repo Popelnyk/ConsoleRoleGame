@@ -1,26 +1,21 @@
 using RoleGame.AbstractClasses;
 
-namespace RoleGame.Classes.Artifacts
-{
-  public class BasiliskEyeArtifact : AbstractArtifact
-  {
-    public BasiliskEyeArtifact(int powerOfArtifact = 0, bool reusabilityOfArtifact = true) 
+namespace RoleGame.Classes.Artifacts {
+  public class BasiliskEyeArtifact : AbstractArtifact {
+    public BasiliskEyeArtifact(int powerOfArtifact = 0, bool reusabilityOfArtifact = false)
       : base(powerOfArtifact, reusabilityOfArtifact) {
-      PowerOfArtifact = 0;
-      ReusabilityOfArtifact = true;
     }
 
-    public override void UseArtifact(Player playerSender, Player playerReciever = null, int power = 0) {
+    public override void UseMagic(Player playerSender, Player playerReciever, int power = 0) {
       if (playerReciever.State != PlayerParams.State.Dead) {
         playerReciever.State = PlayerParams.State.Paralyzed;
-      }
-      else {
+      } else {
         //TODO: some messages
       }
     }
 
-    public override void UseArtifact(Player playerSender, PlayerWithMagic playerReciever = null, int power = 0) {
-      UseArtifact(playerSender, playerReciever as Player, 0);
+    public override void UseMagic(Player playerSender, PlayerWithMagic playerReciever, int power = 0) {
+      UseMagic(playerSender, playerReciever as Player, 0);
     }
   }
 }

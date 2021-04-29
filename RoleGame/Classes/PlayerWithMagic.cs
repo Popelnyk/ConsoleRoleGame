@@ -1,52 +1,47 @@
 using RoleGame.Classes.Spells;
 
-namespace RoleGame.Classes
-{
-  public class PlayerWithMagic : Player
-  {
+namespace RoleGame.Classes {
+  public class PlayerWithMagic : Player {
     public PlayerWithMagic(string name, PlayerParams.Race race, PlayerParams.Sex sex, int age) : base(name, race, sex,
-      age)
-    {
+      age) {
       SetMaxManaDependingOnRace(race);
       ManaValue = _maxMana;
     }
 
-    public bool ManaChecker(int power)
-    {
+    public bool ManaChecker(int power) {
       return ManaValue >= power;
     }
 
-    /// <summary>
-    /// TODO: experimental things
-    /// </summary>
-
-    public delegate void Expiremental();
-    
-    /// /// <summary>
-    /// TODO: experimental things
-    /// </summary>
-    
     public delegate void ReceivedSpell(PlayerWithMagic playerSender, Player player, int power);
-    
-    public void CastSpell(ReceivedSpell receivedSpell, Player player = null, int power = 0)
-    {
-      if (power < 0)
-      {
+
+    public void CastSpell(ReceivedSpell receivedSpell, Player player = null, int power = 0) {
+      if (power < 0) {
         power = 0;
       }
 
-      if (player == null)
-      {
+      if (player == null) {
         player = this;
       }
 
       receivedSpell(this, player, power);
     }
-    
-    void SetMaxManaDependingOnRace(PlayerParams.Race race)
-    {
-      switch (race)
-      {
+
+    public new delegate void ReceivedArtifact(Player playerSender, PlayerWithMagic playerReciever, int power);
+
+    public void CastArtifact(ReceivedArtifact receivedArtifact, PlayerWithMagic playerReciever = null, int power = 0) {
+      if (power < 0) {
+        power = 0;
+      }
+
+      if (playerReciever == null) {
+        playerReciever = this;
+      }
+
+      receivedArtifact(this, playerReciever, power);
+    }
+
+    void SetMaxManaDependingOnRace(PlayerParams.Race race) {
+      switch (race) {
         case PlayerParams.Race.Elf:
           MaxMana = 350;
           break;
@@ -65,8 +60,7 @@ namespace RoleGame.Classes
       }
     }
 
-    public override string ToString()
-    {
+    public override string ToString() {
       return $"Player name: {Name}\n" +
              $"State: {State}\n" +
              $"Can speak: {CanSpeak}\n" +
@@ -74,59 +68,34 @@ namespace RoleGame.Classes
              $"Race: {Race}\n" +
              $"Sex: {Sex}\n" +
              $"Age: {Age}\n" +
-             $"Health: {Health}\n" +
-             $"Max health: {MaxHealth}\n" +
+             $"Health: {Health}/{MaxHealth}\n" +
              $"Experience: {Experience}\n" +
-             $"Mana: {ManaValue}\n" +
-             $"Max mana: {_maxMana}\n";
+             $"Mana: {ManaValue}/{MaxMana}\n";
     }
 
-    private void ChangeMana(int mana)
-    {
-      if (0 <= mana && mana <= MaxMana)
-      {
+    private void ChangeMana(int mana) {
+      if (0 <= mana && mana <= MaxMana) {
         _mana = mana;
       }
     }
 
-    public void IncreaseMaxMana(int maxMana)
-    {
-      if (maxMana > 0)
-      {
+    public void IncreaseMaxMana(int maxMana) {
+      if (maxMana > 0) {
         _maxMana = maxMana;
       }
     }
 
-    public int MaxMana
-    {
+    public int MaxMana {
       get => _maxMana;
       set => IncreaseMaxMana(value);
     }
 
-    public int ManaValue
-    {
+    public int ManaValue {
       get => _mana;
       set => ChangeMana(value);
     }
 
-    public delegate void ReceivedArtifact(PlayerWithMagic playerWithMagic, PlayerWithMagic playerReciever, int power);
-
-    public void CastArtifact(ReceivedArtifact receivedArtifact, PlayerWithMagic playerReciever = null, int power = 0)
-    {
-      if (power < 0)
-      {
-        power = 0;
-      }
-
-      if (playerReciever == null)
-      {
-        playerReciever = this;
-      }
-
-      receivedArtifact(this, playerReciever, power);
-    } 
-
-    private int _mana;
-    private int _maxMana;
+    private int _mana = 0;
+    private int _maxMana = 0;
   }
 }

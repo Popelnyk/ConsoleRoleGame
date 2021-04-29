@@ -1,11 +1,8 @@
 using System;
 
-namespace RoleGame.Classes
-{
-  public readonly struct PlayerParams
-  {
-    public enum State
-    {
+namespace RoleGame.Classes {
+  public readonly struct PlayerParams {
+    public enum State {
       Normal,
       Attenuated,
       Sick,
@@ -14,14 +11,12 @@ namespace RoleGame.Classes
       Dead
     }
 
-    public enum Sex
-    {
+    public enum Sex {
       Male,
       Female
     }
 
-    public enum Race
-    {
+    public enum Race {
       Human,
       Goblin,
       Elf,
@@ -30,10 +25,8 @@ namespace RoleGame.Classes
     }
   }
 
-  public class Player : IComparable<Player>
-  {
-    public Player(string name, PlayerParams.Race race, PlayerParams.Sex sex, int age)
-    {
+  public class Player : IComparable<Player> {
+    public Player(string name, PlayerParams.Race race, PlayerParams.Sex sex, int age) {
       _id = _lastId++;
       _name = name;
       _race = race;
@@ -52,29 +45,21 @@ namespace RoleGame.Classes
       _state = PlayerParams.State.Normal;
     }
 
-    public void StateCheck()
-    {
-      if (Health == 0)
-      {
+    public void StateCheck() {
+      if (Health == 0) {
         State = PlayerParams.State.Dead;
-      }
-      else if ((double) Health / MaxHealth < 0.1)
-      {
+      } else if ((double) Health / MaxHealth < 0.1) {
         State = PlayerParams.State.Attenuated;
-      }
-      else
-      {
+      } else {
         State = PlayerParams.State.Normal;
       }
     }
 
-    public int CompareTo(Player p)
-    {
+    public int CompareTo(Player p) {
       return Experience.CompareTo(p.Experience);
     }
 
-    public override string ToString()
-    {
+    public override string ToString() {
       return $"Player name: {Name}\n" +
              $"State: {State}\n" +
              $"Can speak: {CanSpeak}\n" +
@@ -82,16 +67,27 @@ namespace RoleGame.Classes
              $"Race: {Race}\n" +
              $"Sex: {Sex}\n" +
              $"Age: {Age}\n" +
-             $"Health: {Health}\n" +
-             $"Max health: {MaxHealth}\n" +
+             $"Health: {Health}/{MaxHealth}\n " +
              $"Experience: {Experience}\n";
     }
 
+    public delegate void ReceivedArtifact(Player playerSender, Player playerReciever, int power);
+
+    public void CastArtifact(ReceivedArtifact receivedArtifact, Player playerReciever = null, int power = 0) {
+      if (power < 0) {
+        power = 0;
+      }
+
+      if (playerReciever == null) {
+        playerReciever = this;
+      }
+
+      receivedArtifact(this, playerReciever, power);
+    }
+
     //TODO: move health to constants
-    private void setMaxHealthDependingOnRace(PlayerParams.Race race)
-    {
-      switch (race)
-      {
+    private void setMaxHealthDependingOnRace(PlayerParams.Race race) {
+      switch (race) {
         case PlayerParams.Race.Elf:
           MaxHealth = 50;
           break;
@@ -110,36 +106,28 @@ namespace RoleGame.Classes
       }
     }
 
-    private void ChangeHealth(int health)
-    {
-      if (EndArmorTime < DateTime.Now)
-      {
+    private void ChangeHealth(int health) {
+      if (EndArmorTime < DateTime.Now) {
         IsArmored = false;
       }
 
-      if (0 <= health && health <= _maxHealth && !IsArmored)
-      {
+      if (0 <= health && health <= _maxHealth && !IsArmored) {
         _health = health;
       }
 
-      if (State == PlayerParams.State.Normal || State == PlayerParams.State.Attenuated)
-      {
+      if (State == PlayerParams.State.Normal || State == PlayerParams.State.Attenuated) {
         StateCheck();
       }
     }
 
-    private void ChangeExperience(int experience)
-    {
-      if (experience >= 0)
-      {
+    private void ChangeExperience(int experience) {
+      if (experience >= 0) {
         _experience = experience;
       }
     }
 
-    public void IncreaseMaxHealth(int maxHealth)
-    {
-      if (maxHealth > 0)
-      {
+    public void IncreaseMaxHealth(int maxHealth) {
+      if (maxHealth > 0) {
         _maxHealth = maxHealth;
       }
     }
@@ -148,62 +136,52 @@ namespace RoleGame.Classes
 
     public int Id => _id;
 
-    public int Age
-    {
+    public int Age {
       get => _age;
       set => _age = value;
     }
 
-    public int MaxHealth
-    {
+    public int MaxHealth {
       get => _maxHealth;
       set => IncreaseMaxHealth(value);
     }
 
-    public int Health
-    {
+    public int Health {
       get => _health;
       set => ChangeHealth(value);
     }
 
-    public int Experience
-    {
+    public int Experience {
       get => _experience;
       set => ChangeExperience(value);
     }
 
-    public bool CanSpeak
-    {
+    public bool CanSpeak {
       get => _canSpeak;
       set => _canSpeak = value;
     }
 
-    public bool CanMove
-    {
+    public bool CanMove {
       get => _canMove;
       set => _canMove = value;
     }
 
-    public bool IsDead
-    {
+    public bool IsDead {
       get => _isDead;
       set => _isDead = value;
     }
 
-    public PlayerParams.State State
-    {
+    public PlayerParams.State State {
       get => _state;
       set => _state = value;
     }
 
-    public DateTime EndArmorTime
-    {
+    public DateTime EndArmorTime {
       get => _endArmorTime;
       set => _endArmorTime = value;
     }
 
-    public bool IsArmored
-    {
+    public bool IsArmored {
       get => _isArmored;
       set => _isArmored = value;
     }
@@ -211,28 +189,11 @@ namespace RoleGame.Classes
     public bool IsPlayerHaveMagic {
       get => _isPlayerHaveMagic;
     }
-    // ARTIFACT
-    public delegate void ReceivedArtifact(Player playerSender, Player playerReciever, int power);
 
-    public virtual void CastArtifact(ReceivedArtifact receivedArtifact, Player playerReciever = null, int power = 0)
-    {
-      if (power < 0)
-      {
-        power = 0;
-      }
-
-      if (playerReciever == null)
-      {
-        playerReciever = this;
-      }
-
-      receivedArtifact(this, playerReciever, power);
-    } 
-    
     public PlayerParams.Race Race => _race;
 
     public PlayerParams.Sex Sex => _sex;
-    
+
     private static int _lastId = 0;
     private readonly string _name;
     private readonly int _id;

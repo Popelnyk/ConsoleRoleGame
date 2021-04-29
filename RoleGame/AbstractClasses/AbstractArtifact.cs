@@ -1,18 +1,19 @@
 using RoleGame.Classes;
 using RoleGame.Interfaces;
 
-namespace RoleGame.AbstractClasses
-{
-  public abstract class AbstractArtifact 
-  {
-    public AbstractArtifact(int powerOfArtifact, bool reusabilityOfArtifact)
-    {
+namespace RoleGame.AbstractClasses {
+  public abstract class AbstractArtifact : IMagic {
+    public AbstractArtifact(int powerOfArtifact, bool reusabilityOfArtifact) {
       PowerOfArtifact = powerOfArtifact;
       ReusabilityOfArtifact = reusabilityOfArtifact;
     }
-    
-    public abstract void UseArtifact(Player playerSender, Player playerReciever = null, int power = 0);
-    public abstract void UseArtifact(Player playerSender, PlayerWithMagic playerReciever = null, int power = 0);
+
+    public void UseMagic(PlayerWithMagic playerSender, Player playerReciever, int power = 0) {
+      UseMagic(playerSender as Player, playerReciever, power);
+    }
+
+    public abstract void UseMagic(Player playerSender, Player playerReciever, int power = 0);
+    public abstract void UseMagic(Player playerSender, PlayerWithMagic playerReciever, int power = 0);
 
     public enum ArtifactVolume {
       None,
@@ -20,19 +21,16 @@ namespace RoleGame.AbstractClasses
       Middle,
       Big
     }
-    
-    public int PowerOfArtifact
-    {
+
+    public int PowerOfArtifact {
       get => _powerOfArtifact;
-      set
-      {
+      set {
         if (value >= 0)
           _powerOfArtifact = value;
       }
     }
 
-    public bool ReusabilityOfArtifact
-    {
+    public bool ReusabilityOfArtifact {
       get => _reusabilityOfArtifact;
       set => _reusabilityOfArtifact = value;
     }
