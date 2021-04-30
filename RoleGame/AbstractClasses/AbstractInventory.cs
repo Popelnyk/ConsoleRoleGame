@@ -1,7 +1,6 @@
 namespace RoleGame.AbstractClasses
 {
-    public abstract  class AbstractInventory
-    {
-        
-    }
+  public abstract class AbstractInventory
+  {
+  }
 }

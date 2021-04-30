@@ -26,6 +26,20 @@ namespace RoleGame.Classes {
       receivedSpell(this, player, power);
     }
 
+    public new delegate void ReceivedArtifact(Player playerSender, PlayerWithMagic playerReciever, int power);
+
+    public void CastArtifact(ReceivedArtifact receivedArtifact, PlayerWithMagic playerReciever = null, int power = 0) {
+      if (power < 0) {
+        power = 0;
+      }
+
+      if (playerReciever == null) {
+        playerReciever = this;
+      }
+
+      receivedArtifact(this, playerReciever, power);
+    }
+
     void SetMaxManaDependingOnRace(PlayerParams.Race race) {
       switch (race) {
         case PlayerParams.Race.Elf:
@@ -54,11 +68,9 @@ namespace RoleGame.Classes {
              $"Race: {Race}\n" +
              $"Sex: {Sex}\n" +
              $"Age: {Age}\n" +
-             $"Health: {Health}\n" +
-             $"Max health: {MaxHealth}\n" +
+             $"Health: {Health}/{MaxHealth}\n" +
              $"Experience: {Experience}\n" +
-             $"Mana: {ManaValue}\n" +
-             $"Max mana: {_maxMana}\n";
+             $"Mana: {ManaValue}/{MaxMana}\n";
     }
 
     private void ChangeMana(int mana) {
@@ -83,7 +95,7 @@ namespace RoleGame.Classes {
       set => ChangeMana(value);
     }
 
-    private int _mana;
-    private int _maxMana;
+    private int _mana = 0;
+    private int _maxMana = 0;
   }
 }

@@ -9,7 +9,7 @@ namespace RoleGame.AbstractClasses {
       MotorComponent = motorComponent;
     }
 
-    public abstract void UseSpell(PlayerWithMagic playerSender, Player player, int power = 0);
+    public abstract void UseMagic(PlayerWithMagic playerSender, Player player, int power = 0);
 
     public int MinManaValueForSpell {
       get => _minManaValueForSpell;

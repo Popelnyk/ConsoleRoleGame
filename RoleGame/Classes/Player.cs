@@ -67,9 +67,22 @@ namespace RoleGame.Classes {
              $"Race: {Race}\n" +
              $"Sex: {Sex}\n" +
              $"Age: {Age}\n" +
-             $"Health: {Health}\n" +
-             $"Max health: {MaxHealth}\n" +
+             $"Health: {Health}/{MaxHealth}\n " +
              $"Experience: {Experience}\n";
+    }
+
+    public delegate void ReceivedArtifact(Player playerSender, Player playerReciever, int power);
+
+    public void CastArtifact(ReceivedArtifact receivedArtifact, Player playerReciever = null, int power = 0) {
+      if (power < 0) {
+        power = 0;
+      }
+
+      if (playerReciever == null) {
+        playerReciever = this;
+      }
+
+      receivedArtifact(this, playerReciever, power);
     }
 
     //TODO: move health to constants
@@ -173,6 +186,10 @@ namespace RoleGame.Classes {
       set => _isArmored = value;
     }
 
+    public bool IsPlayerHaveMagic {
+      get => _isPlayerHaveMagic;
+    }
+
     public PlayerParams.Race Race => _race;
 
     public PlayerParams.Sex Sex => _sex;
@@ -193,5 +210,7 @@ namespace RoleGame.Classes {
 
     private DateTime _endArmorTime;
     private bool _isArmored;
+
+    private readonly bool _isPlayerHaveMagic = false;
   }
 }

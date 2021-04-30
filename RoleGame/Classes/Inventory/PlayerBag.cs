@@ -1,7 +1,6 @@
 namespace RoleGame.Classes.Inventory
 {
-    public class PlayerBag
-    {
-        
-    }
+  public class PlayerBag
+  {
+  }
 }

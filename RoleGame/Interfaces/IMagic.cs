@@ -1,7 +1,9 @@
 using RoleGame.Classes;
 
-namespace RoleGame.Interfaces {
-  public interface IMagic {
-    public void UseSpell(PlayerWithMagic playerSender, Player player, int power = 0);
+namespace RoleGame.Interfaces
+{
+  public interface IMagic
+  {
+    public void UseMagic(PlayerWithMagic playerSender, Player player, int power = 0);
   }
 }
