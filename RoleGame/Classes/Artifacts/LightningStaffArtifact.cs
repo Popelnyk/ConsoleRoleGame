@@ -3,14 +3,14 @@ using RoleGame.AbstractClasses;
 
 namespace RoleGame.Classes.Artifacts {
   public class LightningStaffArtifact : AbstractArtifact {
-    public LightningStaffArtifact(int powerOfArtifact = 0, bool reusabilityOfArtifact = true)
-      : base(powerOfArtifact, reusabilityOfArtifact) {
+    public LightningStaffArtifact(int artifactPower = 0, bool reusability = true)
+      : base(artifactPower, reusability) {
     }
 
     public override void UseMagic(Player playerSender, Player playerReciever, int power = 0) {
-      if ((playerReciever.Health - power >= 0) && PowerOfArtifact != 0) {
+      if ((playerReciever.Health - power >= 0) && ArtifactPower != 0) {
         playerReciever.Health -= power;
-        PowerOfArtifact -= power;
+        ArtifactPower -= power;
       } else if (playerReciever.Health - power < 0) {
         playerReciever.Health = 0;
       } else {

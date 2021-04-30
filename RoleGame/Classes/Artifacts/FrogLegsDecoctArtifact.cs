@@ -2,8 +2,8 @@ using RoleGame.AbstractClasses;
 
 namespace RoleGame.Classes.Artifacts {
   public class FrogLegsDecoctArtifact : AbstractArtifact {
-    public FrogLegsDecoctArtifact(int powerOfArtifact = 0, bool reusabilityOfArtifact = false)
-      : base(powerOfArtifact, reusabilityOfArtifact) {
+    public FrogLegsDecoctArtifact(int artifactPower = 0, bool reusability = false)
+      : base(artifactPower, reusability) {
     }
 
     public override void UseMagic(Player playerSender, Player playerReciever, int power = 0) {

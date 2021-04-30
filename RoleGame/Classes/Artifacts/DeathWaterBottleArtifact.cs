@@ -4,9 +4,9 @@ using RoleGame.AbstractClasses;
 
 namespace RoleGame.Classes.Artifacts {
   public class DeathWaterBottleArtifact : AbstractArtifact {
-    public DeathWaterBottleArtifact(ArtifactVolume artifactVolume = ArtifactVolume.Middle, int powerOfArtifact = 0,
-      bool reusabilityOfArtifact = false)
-      : base(powerOfArtifact, reusabilityOfArtifact) {
+    public DeathWaterBottleArtifact(ArtifactVolume artifactVolume = ArtifactVolume.Middle, int artifactPower = 0,
+      bool reusability = false)
+      : base(artifactPower, reusability) {
       _artifactVolume = artifactVolume;
     }
 

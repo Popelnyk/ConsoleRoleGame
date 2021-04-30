@@ -2,22 +2,23 @@ using RoleGame.AbstractClasses;
 
 namespace RoleGame.Classes.Artifacts {
   public class PoisonousSalivaArtifact : AbstractArtifact {
-    public PoisonousSalivaArtifact(int powerOfArtifact = 0, bool reusabilityOfArtifact = true)
-      : base(powerOfArtifact, reusabilityOfArtifact) {
-    }
+    public PoisonousSalivaArtifact(int artifactPower = 0, bool reusability = true)
+      : base(artifactPower, reusability) { }
 
     public override void UseMagic(Player playerSender, Player playerReciever, int power = 0) {
-      if (playerReciever.State == PlayerParams.State.Attenuated || playerReciever.State == PlayerParams.State.Normal) {
-        if (playerReciever.Health - power >= 0) {
-          playerReciever.State = PlayerParams.State.Poisoned;
-          playerReciever.Health -= power;
-          PowerOfArtifact -= power;
-        } else {
-          playerReciever.Health = 0;
-          //TODO: some messages
-        }
+      if (!(playerReciever.State == PlayerParams.State.Attenuated ||
+            playerReciever.State == PlayerParams.State.Normal)) {
+        //message
+        return;
+      }
+
+      if (playerReciever.Health - power >= 0) {
+        playerReciever.State = PlayerParams.State.Poisoned;
+        playerReciever.Health -= power;
+        ArtifactPower -= power;
       } else {
-        //TODO: Some messages
+        playerReciever.Health = 0;
+        //messages
       }
     }
 

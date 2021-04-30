@@ -4,8 +4,8 @@ using RoleGame.Interfaces;
 namespace RoleGame.AbstractClasses {
   public abstract class AbstractArtifact : IMagic {
     public AbstractArtifact(int powerOfArtifact, bool reusabilityOfArtifact) {
-      PowerOfArtifact = powerOfArtifact;
-      ReusabilityOfArtifact = reusabilityOfArtifact;
+      ArtifactPower = powerOfArtifact;
+      Reusability = reusabilityOfArtifact;
     }
 
     public void UseMagic(PlayerWithMagic playerSender, Player playerReciever, int power = 0) {
@@ -22,20 +22,20 @@ namespace RoleGame.AbstractClasses {
       Big
     }
 
-    public int PowerOfArtifact {
-      get => _powerOfArtifact;
+    public int ArtifactPower {
+      get => _artifactPower;
       set {
         if (value >= 0)
-          _powerOfArtifact = value;
+          _artifactPower = value;
       }
     }
 
-    public bool ReusabilityOfArtifact {
-      get => _reusabilityOfArtifact;
-      set => _reusabilityOfArtifact = value;
+    public bool Reusability {
+      get => _reusability;
+      set => _reusability = value;
     }
 
-    private int _powerOfArtifact;
-    private bool _reusabilityOfArtifact;
+    private int _artifactPower;
+    private bool _reusability;
   }
 }

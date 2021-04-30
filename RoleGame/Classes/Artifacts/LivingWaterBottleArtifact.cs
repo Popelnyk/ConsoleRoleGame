@@ -6,9 +6,9 @@ using RoleGame.Classes;
 
 namespace RoleGame.Classes.Artifacts {
   public class LivingWaterBottleArtifact : AbstractArtifact {
-    public LivingWaterBottleArtifact(ArtifactVolume artifactVolume = ArtifactVolume.Middle, int powerOfArtifact = 0,
-      bool reusabilityOfArtifact = false)
-      : base(powerOfArtifact, reusabilityOfArtifact) {
+    public LivingWaterBottleArtifact(ArtifactVolume artifactVolume = ArtifactVolume.Middle, int artifactPower = 0,
+      bool reusability = false)
+      : base(artifactPower, reusability) {
       _artifactVolume = artifactVolume;
     }
 
