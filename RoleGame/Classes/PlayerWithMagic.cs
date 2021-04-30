@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using RoleGame.AbstractClasses;
 using RoleGame.Classes.Spells;
 
 namespace RoleGame.Classes {
@@ -6,6 +8,7 @@ namespace RoleGame.Classes {
       age) {
       SetMaxManaDependingOnRace(race);
       ManaValue = _maxMana;
+      KnownSpells = new List<AbstractSpell>();
     }
 
     public bool ManaChecker(int power) {
@@ -15,6 +18,11 @@ namespace RoleGame.Classes {
     public delegate void ReceivedSpell(PlayerWithMagic playerSender, Player player, int power);
 
     public void CastSpell(ReceivedSpell receivedSpell, Player player = null, int power = 0) {
+      if (!KnownSpells.Contains((AbstractSpell) receivedSpell.Target)) {
+        //message
+        return;
+      }
+
       if (power < 0) {
         power = 0;
       }
@@ -29,6 +37,11 @@ namespace RoleGame.Classes {
     public new delegate void ReceivedArtifact(Player playerSender, PlayerWithMagic playerReciever, int power);
 
     public void CastArtifact(ReceivedArtifact receivedArtifact, PlayerWithMagic playerReciever = null, int power = 0) {
+      if (!Inventory.ContainsArtifact((AbstractArtifact) receivedArtifact.Target)) {
+        //message;
+        return;
+      }
+
       if (power < 0) {
         power = 0;
       }
@@ -37,8 +50,25 @@ namespace RoleGame.Classes {
         playerReciever = this;
       }
 
+      Inventory.Bag.Remove((AbstractArtifact) receivedArtifact.Target);
+
       receivedArtifact(this, playerReciever, power);
     }
+
+    public void LearnSpell(AbstractSpell spell) {
+      if (!KnownSpells.Contains(spell)) {
+        KnownSpells.Add(spell);
+      }
+    }
+
+    public void ForgetSpell(AbstractSpell spell) {
+      if (KnownSpells.Contains(spell)) {
+        KnownSpells.Remove(spell);
+      } else {
+        //message
+      }
+    }
+
 
     void SetMaxManaDependingOnRace(PlayerParams.Race race) {
       switch (race) {
@@ -95,7 +125,14 @@ namespace RoleGame.Classes {
       set => ChangeMana(value);
     }
 
+    public List<AbstractSpell> KnownSpells {
+      get => _knownSpells;
+      set => _knownSpells = value;
+    }
+
     private int _mana = 0;
     private int _maxMana = 0;
+
+    private List<AbstractSpell> _knownSpells;
   }
 }

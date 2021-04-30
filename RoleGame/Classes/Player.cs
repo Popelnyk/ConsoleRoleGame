@@ -78,7 +78,7 @@ namespace RoleGame.Classes {
 
     public void CastArtifact(ReceivedArtifact receivedArtifact, Player playerReciever = null, int power = 0) {
       if (!Inventory.ContainsArtifact((AbstractArtifact)receivedArtifact.Target)) {
-        Console.WriteLine("U cant use this artifact");
+        //message;
         return;
       }
       
