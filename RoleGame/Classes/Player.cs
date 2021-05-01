@@ -1,4 +1,5 @@
 using System;
+using RoleGame.AbstractClasses;
 
 namespace RoleGame.Classes {
   public readonly struct PlayerParams {
@@ -43,6 +44,8 @@ namespace RoleGame.Classes {
       _isDead = false;
       _isArmored = false;
       _state = PlayerParams.State.Normal;
+
+      _inventory = new Inventory.Inventory();
     }
 
     public void StateCheck() {
@@ -74,6 +77,11 @@ namespace RoleGame.Classes {
     public delegate void ReceivedArtifact(Player playerSender, Player playerReciever, int power);
 
     public void CastArtifact(ReceivedArtifact receivedArtifact, Player playerReciever = null, int power = 0) {
+      if (!Inventory.ContainsArtifact((AbstractArtifact)receivedArtifact.Target)) {
+        //message;
+        return;
+      }
+      
       if (power < 0) {
         power = 0;
       }
@@ -81,6 +89,8 @@ namespace RoleGame.Classes {
       if (playerReciever == null) {
         playerReciever = this;
       }
+
+      Inventory.Bag.Remove((AbstractArtifact)receivedArtifact.Target);
 
       receivedArtifact(this, playerReciever, power);
     }
@@ -194,6 +204,11 @@ namespace RoleGame.Classes {
 
     public PlayerParams.Sex Sex => _sex;
 
+    public Inventory.Inventory Inventory {
+      get => _inventory;
+      set => _inventory = value;
+    }
+
     private static int _lastId = 0;
     private readonly string _name;
     private readonly int _id;
@@ -212,5 +227,7 @@ namespace RoleGame.Classes {
     private bool _isArmored;
 
     private readonly bool _isPlayerHaveMagic = false;
+
+    private Inventory.Inventory _inventory;
   }
 }
