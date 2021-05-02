@@ -1,3 +1,4 @@
+using System.Threading;
 using RoleGame.Classes;
 using RoleGame.Interfaces;
 
@@ -21,7 +22,6 @@ namespace RoleGame.AbstractClasses {
       Middle,
       Big
     }
-
     public int ArtifactPower {
       get => _artifactPower;
       set {

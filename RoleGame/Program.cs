@@ -10,22 +10,32 @@ using RoleGame.Classes.Spells;
 namespace RoleGame {
   class Program {
     static void Main(string[] args) {
+      //spells
+      AddHealthSpell addHealthSpell = new AddHealthSpell();
+      AntidoteSpell antidoteSpell = new AntidoteSpell();
+      ArmorSpell armorSpell = new ArmorSpell();
+      BringToLifeSpell bringToLifeSpell = new BringToLifeSpell();
+      HealSpell healSpell = new HealSpell();
+      WakeUpSpell wakeUpSpell = new WakeUpSpell();
+      
+      //artifacts
+      BasiliskEyeArtifact basiliskEyeArtifact = new BasiliskEyeArtifact();
+      
+      DeathWaterBottleArtifact deathWaterBottleArtifactSmall = new DeathWaterBottleArtifact(AbstractArtifact.ArtifactVolume.Small);
+      DeathWaterBottleArtifact deathWaterBottleArtifactMiddle = new DeathWaterBottleArtifact();
+      DeathWaterBottleArtifact deathWaterBottleArtifactLarge = new DeathWaterBottleArtifact(AbstractArtifact.ArtifactVolume.Big);
+      
+      FrogLegsDecoctArtifact frogLegsDecoctArtifact = new FrogLegsDecoctArtifact();
+      LightningStaffArtifact lightningStaffArtifact = new LightningStaffArtifact();
+      
+      LivingWaterBottleArtifact livingWaterBottleArtifactSmall = new LivingWaterBottleArtifact(AbstractArtifact.ArtifactVolume.Small);
+      LivingWaterBottleArtifact livingWaterBottleArtifactMiddle = new LivingWaterBottleArtifact();
+      LivingWaterBottleArtifact livingWaterBottleArtifactLarge = new LivingWaterBottleArtifact(AbstractArtifact.ArtifactVolume.Big);
+     
+      PoisonousSalivaArtifact poisonousSalivaArtifact = new PoisonousSalivaArtifact();
 
-      // BasiliskEyeArtifact basiliskEyeArtifact = new BasiliskEyeArtifact();
-      // LightningStaffArtifact lightningStaffArtifact = new LightningStaffArtifact();
-      //
-      // Player player = new Player("Alex", PlayerParams.Race.Elf, PlayerParams.Sex.Male, 19);
-      // player.Inventory.PickUpArtifact(basiliskEyeArtifact);
-      //
-      // Player player1 = new Player("Danek", PlayerParams.Race.Gnome, PlayerParams.Sex.Female, 32);
-      //
-      // Console.WriteLine(player.Inventory.ContainsArtifact(basiliskEyeArtifact));
-      // Console.WriteLine(player1.Inventory.ContainsArtifact(basiliskEyeArtifact));
-      //
-      // player.Inventory.TransferArtifactToAnotherPlayer(basiliskEyeArtifact, player1);
-      // player.CastArtifact(basiliskEyeArtifact.UseMagic);
-      // Console.WriteLine(player.Inventory.ContainsArtifact(basiliskEyeArtifact));
-      // Console.WriteLine(player1.Inventory.ContainsArtifact(basiliskEyeArtifact));
+      PlayerWithMagic wizard = new PlayerWithMagic("Alex", PlayerParams.Race.Elf, PlayerParams.Sex.Female, 19);
+      PlayerWithMagic wizard1 = new PlayerWithMagic("gena", PlayerParams.Race.Elf, PlayerParams.Sex.Male, 24);
     }
   }
 }

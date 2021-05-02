@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using RoleGame.AbstractClasses;
 
 namespace RoleGame.Classes {
@@ -79,6 +80,11 @@ namespace RoleGame.Classes {
     public void CastArtifact(ReceivedArtifact receivedArtifact, Player playerReciever = null, int power = 0) {
       if (!Inventory.ContainsArtifact((AbstractArtifact)receivedArtifact.Target)) {
         //message;
+        return;
+      }
+
+      if (!CanMove) {
+        //message
         return;
       }
       
@@ -183,7 +189,18 @@ namespace RoleGame.Classes {
 
     public PlayerParams.State State {
       get => _state;
-      set => _state = value;
+      set {
+        _state = value;
+        if (value == PlayerParams.State.Paralyzed) {
+          CanMove = false;
+        } else if (value == PlayerParams.State.Dead) {
+          CanMove = false;
+          CanSpeak = false;
+        } else {
+          CanMove = true;
+          CanSpeak = true;
+        }
+      }
     }
 
     public DateTime EndArmorTime {
@@ -194,10 +211,6 @@ namespace RoleGame.Classes {
     public bool IsArmored {
       get => _isArmored;
       set => _isArmored = value;
-    }
-
-    public bool IsPlayerHaveMagic {
-      get => _isPlayerHaveMagic;
     }
 
     public PlayerParams.Race Race => _race;
@@ -225,8 +238,6 @@ namespace RoleGame.Classes {
 
     private DateTime _endArmorTime;
     private bool _isArmored;
-
-    private readonly bool _isPlayerHaveMagic = false;
 
     private Inventory.Inventory _inventory;
   }
