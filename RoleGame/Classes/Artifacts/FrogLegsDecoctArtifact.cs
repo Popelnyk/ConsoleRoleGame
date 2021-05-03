@@ -9,6 +9,7 @@ namespace RoleGame.Classes.Artifacts {
     public override void UseMagic(Player playerSender, Player playerReciever, int power = 0) {
       if (playerReciever.State == PlayerParams.State.Poisoned) {
         playerReciever.State = PlayerParams.State.Attenuated;
+        playerSender.Inventory.ThrowAwayArtifact(this);
       } else {
         //TODO: Add some messages
       }

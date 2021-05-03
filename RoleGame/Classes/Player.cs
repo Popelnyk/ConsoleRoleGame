@@ -147,7 +147,7 @@ namespace RoleGame.Classes {
         _maxHealth = maxHealth;
       }
     }
-
+    
     public string Name => _name;
 
     public int Id => _id;
