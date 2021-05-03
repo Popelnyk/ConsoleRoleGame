@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RoleGame.AbstractClasses;
 using RoleGame.Classes.Spells;
@@ -19,7 +20,7 @@ namespace RoleGame.Classes {
 
     public void CastSpell(ReceivedSpell receivedSpell, Player player = null, int power = 0) {
       if (!KnownSpells.Contains((AbstractSpell) receivedSpell.Target)) {
-        //message
+        Console.WriteLine("Character doesn't know this spell!");
         return;
       }
 
@@ -65,7 +66,7 @@ namespace RoleGame.Classes {
       if (KnownSpells.Contains(spell)) {
         KnownSpells.Remove(spell);
       } else {
-        //message
+        Console.WriteLine("Character doesn't know this spell!");
       }
     }
 

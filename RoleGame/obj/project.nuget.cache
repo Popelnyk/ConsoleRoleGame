@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EZ3wsaQeKFPYXMkZc+fmrV0/DeZ8f4MpoFvOXOIkEgtPlbqAeE98HjPFVnlA63CG0287AHqkFAnBSZ9DRms2Hw==",
+  "dgSpecHash": "zWWoNShvAXbkkNRze00e/9qOl3jm9ROcd3snO8B6Xyg4npOySyNmecmMqrKOBQ0KR301fCBlwYmcS5VnMq8abw==",
   "success": true,
-  "projectFilePath": "/Users/macbookpro/RiderProjects/RoleGame/RoleGame/RoleGame.csproj",
+  "projectFilePath": "D:\\programming\\CSharpProjects\\ConsoleRoleGame\\RoleGame\\RoleGame.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

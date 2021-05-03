@@ -1,3 +1,4 @@
+using System;
 using RoleGame.AbstractClasses;
 
 namespace RoleGame.Classes.Spells
@@ -13,13 +14,13 @@ namespace RoleGame.Classes.Spells
     {
       if (!playerSender.ManaChecker(power))
       {
-        //message
+        Console.WriteLine("Player haven't got enough mana for spell!");
         return;
       }
 
       if (!((playerSender.CanSpeak && VerbalComponent) || (playerSender.CanMove && MotorComponent)))
       {
-        //message
+        Console.WriteLine("The player's state does not correspond to the verbal component");
         return;
       }
 

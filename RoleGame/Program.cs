@@ -35,7 +35,10 @@ namespace RoleGame {
       PoisonousSalivaArtifact poisonousSalivaArtifact = new PoisonousSalivaArtifact();
 
       PlayerWithMagic wizard = new PlayerWithMagic("Alex", PlayerParams.Race.Elf, PlayerParams.Sex.Female, 19);
-      PlayerWithMagic wizard1 = new PlayerWithMagic("gena", PlayerParams.Race.Elf, PlayerParams.Sex.Male, 24);
+
+      /*while (true) {
+      }*/
+      
     }
   }
 }
