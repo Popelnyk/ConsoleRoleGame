@@ -8,24 +8,26 @@
     "net5.0": []
   },
   "packageFolders": {
-    "/Users/macbookpro/.nuget/packages/": {}
+    "C:\\Users\\GlobusNoAdmin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/macbookpro/RiderProjects/RoleGame/RoleGame/RoleGame.csproj",
+      "projectUniqueName": "D:\\programming\\CSharpProjects\\ConsoleRoleGame\\RoleGame\\RoleGame.csproj",
       "projectName": "RoleGame",
-      "projectPath": "/Users/macbookpro/RiderProjects/RoleGame/RoleGame/RoleGame.csproj",
-      "packagesPath": "/Users/macbookpro/.nuget/packages/",
-      "outputPath": "/Users/macbookpro/RiderProjects/RoleGame/RoleGame/obj/",
+      "projectPath": "D:\\programming\\CSharpProjects\\ConsoleRoleGame\\RoleGame\\RoleGame.csproj",
+      "packagesPath": "C:\\Users\\GlobusNoAdmin\\.nuget\\packages\\",
+      "outputPath": "D:\\programming\\CSharpProjects\\ConsoleRoleGame\\RoleGame\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/macbookpro/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\GlobusNoAdmin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -58,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/Users/macbookpro/.dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

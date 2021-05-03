@@ -79,12 +79,12 @@ namespace RoleGame.Classes {
 
     public void CastArtifact(ReceivedArtifact receivedArtifact, Player playerReciever = null, int power = 0) {
       if (!Inventory.ContainsArtifact((AbstractArtifact)receivedArtifact.Target)) {
-        //message;
+        Console.WriteLine("There is no such artifact in inventory!");
         return;
       }
 
       if (!CanMove) {
-        //message
+        Console.WriteLine("Your person cant move!");
         return;
       }
       
