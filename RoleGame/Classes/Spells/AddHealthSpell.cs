@@ -14,7 +14,7 @@ namespace RoleGame.Classes.Spells
     {
       if (!((playerSender.CanSpeak && VerbalComponent) || (playerSender.CanMove && MotorComponent)))
       {
-        //message
+        Console.WriteLine("The player's state does not correspond to the verbal component");
         return;
       }
 

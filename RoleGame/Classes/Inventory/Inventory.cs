@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RoleGame.AbstractClasses;
 
 namespace RoleGame.Classes.Inventory {
@@ -16,7 +17,7 @@ namespace RoleGame.Classes.Inventory {
       if (Bag.Contains(artifact)) {
         Bag.Remove(artifact);
       } else {
-        //message
+        Console.WriteLine("There is no such artifact in inventory!");
       }
     }
 
