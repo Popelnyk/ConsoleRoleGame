@@ -15,7 +15,6 @@ namespace RoleGame.Classes.Artifacts {
       if (playerReciever.Health - power >= 0) {
         playerReciever.State = PlayerParams.State.Poisoned;
         playerReciever.Health -= power;
-        ArtifactPower -= power;
       } else {
         playerReciever.Health = 0;
         //messages

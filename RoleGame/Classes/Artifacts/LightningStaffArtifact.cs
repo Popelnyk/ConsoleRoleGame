@@ -11,6 +11,8 @@ namespace RoleGame.Classes.Artifacts {
       if ((playerReciever.Health - power >= 0) && ArtifactPower != 0) {
         playerReciever.Health -= power;
         ArtifactPower -= power;
+      } else if (this.ArtifactPower == 0) {
+        playerSender.Inventory.ThrowAwayArtifact(this);
       } else if (playerReciever.Health - power < 0) {
         playerReciever.Health = 0;
       } else {

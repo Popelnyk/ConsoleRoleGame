@@ -35,6 +35,9 @@ namespace RoleGame.Classes.Artifacts {
       else return;
       if (playerReciever.MaxMana - playerReciever.ManaValue >= manToRestore) {
         playerReciever.ManaValue += manToRestore;
+        playerSender.Inventory.ThrowAwayArtifact(this);
+      } else if (playerReciever.ManaValue == playerReciever.MaxMana) {
+        playerSender.Inventory.ThrowAwayArtifact(this);
       } else {
         playerReciever.ManaValue = playerReciever.MaxMana;
       }

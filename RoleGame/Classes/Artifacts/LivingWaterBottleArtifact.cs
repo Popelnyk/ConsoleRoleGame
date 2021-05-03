@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualBasic;
 using RoleGame.AbstractClasses;
 using RoleGame.Classes;
@@ -33,6 +34,9 @@ namespace RoleGame.Classes.Artifacts {
 
       if (playerReciever.MaxHealth - playerReciever.Health >= healthToRestore) {
         playerReciever.Health += healthToRestore;
+        playerSender.Inventory.ThrowAwayArtifact(this);
+      } else if (playerReciever.Health == playerReciever.MaxHealth) {
+        playerSender.Inventory.ThrowAwayArtifact(this);
       } else {
         playerReciever.Health = playerReciever.MaxHealth;
       }
@@ -42,7 +46,7 @@ namespace RoleGame.Classes.Artifacts {
     public override void UseMagic(Player playerSender, PlayerWithMagic playerReciever, int power = 0) {
       UseMagic(playerSender, playerReciever as Player, power);
     }
-
+    
     private readonly ArtifactVolume _artifactVolume;
   }
 }
