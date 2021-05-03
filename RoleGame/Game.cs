@@ -45,10 +45,7 @@ namespace RoleGame {
 
     private PlayerWithMagic wizard = new PlayerWithMagic("Alex", PlayerParams.Race.Elf, PlayerParams.Sex.Female, 19);
     private PlayerWithMagic wizard1 = new PlayerWithMagic("Hleb", PlayerParams.Race.Goblin, PlayerParams.Sex.Male, 4);
-
-    private PlayerWithMagic wizard2 =
-      new PlayerWithMagic("Danik", PlayerParams.Race.Human, PlayerParams.Sex.Female, 44);
-
+    private PlayerWithMagic wizard2 = new PlayerWithMagic("Danik", PlayerParams.Race.Human, PlayerParams.Sex.Female, 44);
     private PlayerWithMagic wizard3 = new PlayerWithMagic("vfvf", PlayerParams.Race.Orc, PlayerParams.Sex.Male, 76);
     private PlayerWithMagic wizard4 = new PlayerWithMagic("FFFF", PlayerParams.Race.Orc, PlayerParams.Sex.Male, 43);
     private PlayerWithMagic wizard5 = new PlayerWithMagic("OPOKL", PlayerParams.Race.Gnome, PlayerParams.Sex.Male, 34);
@@ -59,7 +56,6 @@ namespace RoleGame {
     private Player simpleTroop3 = new Player("OLPe", PlayerParams.Race.Orc, PlayerParams.Sex.Female, 77);
     private Player simpleTroop4 = new Player("ASOP", PlayerParams.Race.Gnome, PlayerParams.Sex.Male, 54);
     private Player simpleTroop5 = new Player("ASAP", PlayerParams.Race.Orc, PlayerParams.Sex.Female, 34);
-    private Player simpleTroop6 = new Player("ROCKY", PlayerParams.Race.Goblin, PlayerParams.Sex.Male, 34);
 
     private Game() { }
 
@@ -110,6 +106,7 @@ namespace RoleGame {
         : new Player(name, (PlayerParams.Race) type, (PlayerParams.Sex) sex, age);
 
       while (true) {
+        Console.WriteLine("\n");
         Console.WriteLine("Enter q to quit\n \t" +
                           "enter 1 to cast spell\n \t" +
                           "enter 2 to use artifact\n \t" +
@@ -117,7 +114,8 @@ namespace RoleGame {
                           "enter 4 to throw away artifact\n \t" +
                           "enter 5 to give artifact to another player\n \t" +
                           "enter 6 to learn spell\n \t" +
-                          "enter 7 to forget spell");
+                          "enter 7 to forget spell\n \t" +
+                          "enter 8 to output info about player\n \t");
         string command = Console.ReadLine();
         int commandCode = Convert.ToInt32(command);
         if (command == "q") {
@@ -258,7 +256,7 @@ namespace RoleGame {
             break;
           }
           case 4: {
-            Console.WriteLine("Choose artifact to pick up:\n \t" +
+            Console.WriteLine("Choose artifact to throw away:\n \t" +
                               "1 -- Basilisk eye Artifact\n \t" +
                               "2 -- Death water bottle Artifact\n \t" +
                               "3 -- Frog legs decoct Artifact\n \t" +
@@ -299,7 +297,7 @@ namespace RoleGame {
             break;
           }
           case 5: {
-            Console.WriteLine("Choose artifact to pick up:\n \t" +
+            Console.WriteLine("Choose artifact to transfer:\n \t" +
                               "1 -- Basilisk eye Artifact\n \t" +
                               "2 -- Death water bottle Artifact\n \t" +
                               "3 -- Frog legs decoct Artifact\n \t" +
@@ -429,6 +427,96 @@ namespace RoleGame {
                 break;
               }
             }
+            break;
+          }
+          case 8: {
+            Console.WriteLine("Enter type of characters to show info:\n \t" +
+                              "1 -- this person\n \t" +
+                              "2 -- wizards\n \t" +
+                              "3 -- players");
+            int classCharacter = Convert.ToInt32(Console.ReadLine());
+            switch (classCharacter) {
+              case 1: {
+                Console.WriteLine(player);
+                break;
+              }
+              case 2: {
+                Console.WriteLine("Enter number of wizard(1-6):\n \t");
+                int wizardNumber = Convert.ToInt32(Console.ReadLine());
+                switch (wizardNumber) {
+                  case 1: {
+                    Console.WriteLine(wizard);
+                    break;
+                  }
+                  case 2: {
+                    Console.WriteLine(wizard1);
+                    break;
+                  }
+                  case 3: {
+                    Console.WriteLine(wizard2);
+                    break;
+                  }
+                  case 4: {
+                    Console.WriteLine(wizard3);
+                    break;
+                  }
+                  case 5: {
+                    Console.WriteLine(wizard4);
+                    break;
+                  }
+                  case 6: {
+                    Console.WriteLine(wizard5);
+                    break;
+                  }
+                  default: {
+                    Console.WriteLine("There is no wizards with this number");
+                    break;
+                  }
+                }
+                break;
+              }
+              case 3: {
+                Console.WriteLine("Enter number of player(1-6):\n \t");
+                int playerNumber = Convert.ToInt32(Console.ReadLine());
+                switch (playerNumber) {
+                  case 1: {
+                    Console.WriteLine(simpleTroop);
+                    break;
+                  }
+                  case 2: {
+                    Console.WriteLine(simpleTroop1);
+                    break;
+                  }
+                  case 3: {
+                    Console.WriteLine(simpleTroop2);
+                    break;
+                  }
+                  case 4: {
+                    Console.WriteLine(simpleTroop3);
+                    break;
+                  }
+                  case 5: {
+                    Console.WriteLine(simpleTroop4);
+                    break;
+                  }
+                  case 6: {
+                    Console.WriteLine(simpleTroop5);
+                    break;
+                  }
+                  default: {
+                    Console.WriteLine("There is no troops with this number");
+                    break;
+                  }
+                }
+                break;
+              }
+              default: {
+                Console.WriteLine("Wrong type");
+                break;
+              }
+            }
+
+
             break;
           }
         }
